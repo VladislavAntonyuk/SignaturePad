@@ -1,0 +1,30 @@
+name: XamarinSignaturePad
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the WPF branch
+on:
+  push:
+    branches: [ WPF ]
+  pull_request:
+    branches: [ WPF ]
+
+jobs:
+  buildOnWindows:
+    runs-on: windows-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Run build
+      shell: pwsh
+      run: ./build.ps1
+      
+  buildOnMac:
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Run build
+      shell: bash
+      run: ./build.sh
